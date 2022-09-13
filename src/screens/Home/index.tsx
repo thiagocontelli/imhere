@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
 	View,
 	Text,
@@ -10,28 +11,26 @@ import { Participant } from '../../components/Participant';
 import { styles } from './style';
 
 export default function Home() {
-	const participants = [
-		'Thiago',
-		'Maria',
-		'João',
-		'Carlos',
-		'Abner',
-		'Juliana',
-		'Beto',
-		'Edvaldo',
-		'Arnaldo',
-		'Beatriz',
-	];
+	const [participants, setParticipants] = useState<string[]>([]);
+	const [participantName, setParticipantName] = useState('');
 
 	function handleParticipantAdd() {
-		if (participants.includes('Thiago')) {
-			Alert.alert(
+		if (participants.includes(participantName)) {
+			return Alert.alert(
 				'Participante existe',
 				'Já existe um participante com esse nome.'
 			);
 		}
 
-		console.log('Você clicou em adicionar');
+		if (participantName !== '') {
+			setParticipants((prevState) => [...prevState, participantName]);
+			setParticipantName('');
+		} else {
+			Alert.alert(
+				'Nome do participante vazio',
+				'Impossível adicionar o participante sem um nome.'
+			);
+		}
 	}
 
 	function handleParticipantRemove(name: string) {
@@ -41,7 +40,11 @@ export default function Home() {
 			[
 				{
 					text: 'Sim',
-					onPress: () => Alert.alert('Deletado!'),
+					onPress: () => {
+						setParticipants((prevState) =>
+							prevState.filter((participant) => participant !== name)
+						);
+					},
 				},
 				{
 					text: 'Não',
@@ -49,8 +52,6 @@ export default function Home() {
 				},
 			]
 		);
-
-		console.log(`Você clicou em remover ${name}`);
 	}
 
 	return (
@@ -63,6 +64,8 @@ export default function Home() {
 					style={styles.input}
 					placeholder="Nome do participante"
 					placeholderTextColor={'#A5A692'}
+					onChangeText={setParticipantName}
+					value={participantName}
 				/>
 
 				<TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
