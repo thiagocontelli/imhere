@@ -63,7 +63,7 @@ export default function Home() {
 				<TextInput
 					style={styles.input}
 					placeholder="Nome do participante"
-					placeholderTextColor={'#A5A692'}
+					placeholderTextColor={'#2b2b29'}
 					onChangeText={setParticipantName}
 					value={participantName}
 				/>

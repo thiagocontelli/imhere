@@ -2,14 +2,15 @@ import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
 	container: {
-		backgroundColor: '#011F26',
+		backgroundColor: '#2E3959',
 		flex: 1,
 		padding: 20,
 		paddingTop: 80,
 	},
 	eventName: {
-		fontSize: 24,
+		fontSize: 32,
 		color: 'white',
+		fontWeight: 'bold',
 	},
 	eventDate: {
 		fontSize: 20,
@@ -24,10 +25,10 @@ export const styles = StyleSheet.create({
 		marginBottom: 42,
 	},
 	input: {
-		backgroundColor: '#025E73',
+		backgroundColor: '#BFBFBF',
 		height: 50,
 		borderRadius: 5,
-		color: 'red',
+		color: '#2b2b29',
 		padding: 16,
 		fontSize: 16,
 		flex: 1,
